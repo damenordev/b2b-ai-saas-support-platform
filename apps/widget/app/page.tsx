@@ -1,4 +1,4 @@
-import { fetchMutation, fetchQuery } from 'convex/nextjs'
+import { fetchQuery } from 'convex/nextjs'
 
 import { api } from '@workspace/backend/_generated/api'
 
@@ -7,7 +7,7 @@ export default async function Page() {
 
   return (
     <div className="flex items-center justify-center min-h-svh">
-      <p>WEB</p>
+      <p>WIDGET</p>
       <pre>{JSON.stringify(users, null, 2)}</pre>
     </div>
   )
