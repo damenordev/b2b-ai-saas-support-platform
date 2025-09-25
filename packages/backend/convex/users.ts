@@ -15,6 +15,8 @@ export const add = mutation({
     name: v.string(),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity()
+    if (identity === null) throw new Error('Not authenticated')
     const userId = await ctx.db.insert('users', { name: args.name })
     return userId
   },
@@ -36,6 +38,8 @@ export const update = mutation({
     name: v.string(),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity()
+    if (identity === null) throw new Error('Not authenticated')
     await ctx.db.patch(args.id, { name: args.name })
   },
 })
@@ -45,6 +49,8 @@ export const remove = mutation({
     id: v.id('users'),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity()
+    if (identity === null) throw new Error('Not authenticated')
     await ctx.db.delete(args.id)
   },
 })
